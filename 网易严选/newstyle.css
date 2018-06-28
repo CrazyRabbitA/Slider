@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+ul {
+    list-style: none;
+}
+.slide_ul li img {
+    width: 800px;
+}
+
+.slide_ul li {
+    float: left;
+}
+.slide_ul {
+    width: 6400px;
+    margin-left: 0;
+    float: left;
+    transition: margin-left 0.3s;
+ 
+    
+}
+
+#frame {
+    width: 800px;
+    overflow: hidden;
+    
+}
+.wraper {
+    width: 1000px;
+    margin: 200px auto;
+    padding-left: 200px;
+}
+#button {
+    float: left;
+    height: 100px;
+}
+#button ul li {
+    border: 1px solid #000;
+    width: 20px;
+    height: 20px;
+    float: left;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+.active {
+    background: grey;
+}

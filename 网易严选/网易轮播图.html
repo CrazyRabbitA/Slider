@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="http://you.163.com/favicon.ico">
+    <link rel="stylesheet" href="newstyle.css">
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wraper">
+        <div id="frame">
+            <ul class="slide_ul">
+                <li>
+                    <img src="image/1.jpg" alt="">
+                </li>
+                <li>
+                    <img src="image/2.jpg" alt="">
+                </li>
+                <li>
+                    <img src="image/3.jpg" alt="">
+                </li>
+                <li>
+                    <img src="image/4.jpg" alt="">
+                </li>
+                <li>
+                    <img src="image/5.jpg" alt="">
+                </li>
+                <li>
+                    <img src="image/6.jpg" alt="">
+                </li>
+                <li>
+                    <img src="image/7.jpg" alt="">
+                </li>
+                <li>
+                    <img src="image/8.jpg" alt="">
+                </li>
+            </ul>
+            <div id="button">
+                <ul>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                    <li>7</li>
+                    <li>8</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var $ul = $('.slide_ul').eq(0)
+        var $frame = $('#frame').eq(0)
+        var x = 0;
+        var lis = $('#button li')
+        //文档加载好之后，开始滚动
+        $(window).on('load', slide())
+        //鼠标移入窗口，清除计时器，停止滚动,记录位置，移出继续滚
+        $frame.on('mouseover', function () {
+            clearInterval($ul.timer)
+            x = parseFloat($ul.css('marginLeft'))
+        }).on('mouseout', function () { slide() })
+
+        //自动滚动
+        function slide() {
+            clearInterval($ul.timer)
+            $ul.timer = setInterval(function () {
+                $ul.css('marginLeft', x + 'px')
+                var m = x / -800;
+                classChange($(lis[m]))
+                x -= 800;
+                if (x == -6400) { x = 0 }
+            }, 2000)
+        }
+        //悬浮跳转
+        for (var i = 0; i < lis.length; i++) {
+            $(lis[i]).on('mouseover', function (x) {
+                classChange($(this))
+                //获取索引
+                var n = $(x.currentTarget).index()
+                $ul.css('marginLeft', -800 * n + 'px')
+            })
+        }
+        //悬浮加类，兄弟减类
+        function classChange($node) {
+            $node.addClass('active').siblings().removeClass('active')
+        }
+    </script>
+</body>
+
+</html>
